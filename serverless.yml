@@ -2,10 +2,16 @@ service: eltest
 
 frameworkVersion: '2'
 
+custom:
+  yamlStage: ${opt:stage, 'dev'}
+
+
 provider:
   name: aws
   runtime: python3.8
   lambdaHashingVersion: 20201221
+  region: eu-central-1
+  stage: ${self:custom.yamlStage}
 
   environment:
     API_URL:

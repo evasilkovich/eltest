@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+      nodejs: 12
+    commands:
+      - npm i -g serverless
+      - sls --version
+      - python -V
+      - python3 -V
+      - aws --version
+  pre_build:
+    commands:
+      - echo Clean sls stack in the pre_build phase...
+      - sls remove -v
+  build:
+    commands:
+      - echo Build started on `date`
+      - sls deploy -v -s dev
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - ./run-test.sh
+artifacts:
+  files:
+    - target/messageUtil-1.0.jar
