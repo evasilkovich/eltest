@@ -9,7 +9,7 @@ phases:
       - python -V
       - python3 -V
       - aws --version
-      - npm i serverless
+      - npm i -g serverless
       - sls --version
   pre_build:
     commands:
