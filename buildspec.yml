@@ -21,4 +21,5 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - ls -l
       - ./run-test.sh
