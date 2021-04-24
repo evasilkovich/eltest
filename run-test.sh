@@ -19,4 +19,4 @@ api_gateway_url=`aws cloudformation describe-stacks \
 echo "API Gateway URL 1:" ${api_gateway_url}
 export API_GATEWAY_URL=api_gateway_url
 cd test
-python hello.py
+python hello
