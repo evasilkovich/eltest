@@ -6,12 +6,11 @@ phases:
       python: 3.8
       nodejs: 12
     commands:
-      - sls --version
       - python -V
       - python3 -V
       - aws --version
       - npm i serverless
-
+      - sls --version
   pre_build:
     commands:
       - echo Clean sls stack in the pre_build phase...
