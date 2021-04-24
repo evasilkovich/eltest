@@ -6,11 +6,12 @@ phases:
       python: 3.8
       nodejs: 12
     commands:
-      - npm i -g serverless
       - sls --version
       - python -V
       - python3 -V
       - aws --version
+      - npm i serverless
+
   pre_build:
     commands:
       - echo Clean sls stack in the pre_build phase...
@@ -22,6 +23,3 @@ phases:
     commands:
       - echo Build completed on `date`
       - ./run-test.sh
-artifacts:
-  files:
-    - target/messageUtil-1.0.jar
