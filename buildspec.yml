@@ -22,4 +22,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - ls -l
+      - chmod 755 run-test.sh
+      - ls -l
+      - who
       - ./run-test.sh
