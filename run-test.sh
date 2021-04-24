@@ -21,4 +21,5 @@ export API_GATEWAY_URL=api_gateway_url
 ls -l
 
 cd test
-python hello
+ls -l
+python hello.py
