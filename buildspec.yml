@@ -14,7 +14,6 @@ phases:
   pre_build:
     commands:
       - echo Clean sls stack in the pre_build phase...
-      - sls remove -v
   build:
     commands:
       - echo Build started on `date`
