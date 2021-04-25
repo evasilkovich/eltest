@@ -14,15 +14,6 @@ provider:
   stage: ${self:custom.yamlStage}
 
   environment:
-    API_URL:
-      !Join
-      - ''
-      - - 'https://'
-        - !Ref ApiGatewayRestApi
-        - '.execute-api.'
-        - ${opt:region, self:provider.region}
-        - '.amazonaws.com/'
-        - ${opt:stage, self:provider.stage}
 
 
 functions:

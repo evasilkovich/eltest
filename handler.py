@@ -3,7 +3,7 @@ def hello(event, context):
 
     response = {
         "statusCode": 200,
-        "body": "buyworld"
+        "body": "helloworld"
     }
 
     return response

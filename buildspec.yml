@@ -7,13 +7,10 @@ phases:
       nodejs: 12
     commands:
       - python -V
-      - python3 -V
       - aws --version
       - npm i -g serverless
       - sls --version
-  pre_build:
-    commands:
-      - echo Clean sls stack in the pre_build phase...
+
   build:
     commands:
       - echo Build started on `date`
@@ -24,5 +21,4 @@ phases:
       - ls -l
       - chmod 755 run-test.sh
       - ls -l
-      - who
       - ./run-test.sh
