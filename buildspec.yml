@@ -14,10 +14,10 @@ phases:
 #      - service docker status
       - npm i -g serverless
       - sls --version
-      - virtualenv venv --python=python3
-      - source venv/bin/activate
+#      - virtualenv venv --python=python3
+#      - source venv/bin/activate
       - npm i
-#      - pip install -r requirements.txt
+      - pip install -r requirements.txt
 #  pre_build:
 #    commands:
 #      - sls deploy -v -s test

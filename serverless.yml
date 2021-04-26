@@ -5,24 +5,22 @@ plugins:
   - serverless-python-requirements
 
 custom:
-  pythonRequirements:
-    dockerizePip: true
-    zip: true
-    slim: true
-    strip: false
-    noDeploy:
-      - docutils
-      - jmespath
-      - pip
-      - python-dateutil
-      - setuptools
-      - six
-      - tensorboard
-    useStaticCache: true
-    useDownloadCache: true
-    cacheLocation: "./cache"
-
-
+#  pythonRequirements:
+#    dockerizePip: true
+##    zip: true
+#    slim: true
+#    strip: false
+#    noDeploy:
+#      - docutils
+#      - jmespath
+#      - pip
+#      - python-dateutil
+#      - setuptools
+#      - six
+#      - tensorboard
+#    useStaticCache: true
+#    useDownloadCache: true
+#    cacheLocation: "./cache"
   deletionPolicy: Retain
   yamlStage: ${opt:stage, 'dev'}
 
