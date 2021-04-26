@@ -37,6 +37,6 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo $CODEBUILD_BUILD_SUCCEEDING
-      - cd ..
+      - pwd
       - sls remove -v -s test
       - if [ $CODEBUILD_BUILD_SUCCEEDING = 1 ]; then echo Build completed on `date`; echo Starting deployment; sls deploy -v -s dev; else echo Build failed ignoring deployment; fi
