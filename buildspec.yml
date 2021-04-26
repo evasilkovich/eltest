@@ -12,6 +12,7 @@ phases:
       - sls --version
       - virtualenv venv --python=python3
       - source venv/bin/activate
+      - npm i
 #  pre_build:
 #    commands:
 #      - sls deploy -v -s test
