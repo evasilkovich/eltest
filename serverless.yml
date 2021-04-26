@@ -1,8 +1,13 @@
 service: eltest
 
 frameworkVersion: '2'
+plugins:
+  - serverless-python-requirements
 
 custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+  deletionPolicy: Retain
   yamlStage: ${opt:stage, 'dev'}
 
 
@@ -12,6 +17,15 @@ provider:
   lambdaHashingVersion: 20201221
   region: eu-central-1
   stage: ${self:custom.yamlStage}
+
+  iamRoleStatements:
+#    - Effect: Allow
+#      Action:
+#        - states:StartExecution
+#        - states:DescribeExecution
+#        - states:ListExecutions
+#      Resource:
+#        - "*"
 
   environment:
 
