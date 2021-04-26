@@ -8,6 +8,7 @@ phases:
     commands:
       - python -V
       - aws --version
+      - docker --version
       - npm i -g serverless
       - sls --version
       - virtualenv venv --python=python3

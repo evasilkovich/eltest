@@ -6,7 +6,7 @@ plugins:
 
 custom:
   pythonRequirements:
-    dockerizePip: non-linux
+    dockerizePip: true
   deletionPolicy: Retain
   yamlStage: ${opt:stage, 'dev'}
 
