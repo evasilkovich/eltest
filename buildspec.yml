@@ -9,6 +9,9 @@ phases:
       - python -V
       - aws --version
       - docker --version
+      - service docker status
+      - start docker.service
+      - service docker status
       - npm i -g serverless
       - sls --version
       - virtualenv venv --python=python3
