@@ -12,13 +12,13 @@ phases:
       - sls --version
   pre_build:
     commands:
-      - echo Clean sls stack in the pre_build phase...
       - sls deploy -v -s test
       - ls -l
       - chmod 755 run-test.sh
       - ls -l
       - ./run-test.sh
       - sls remove -v -s test
+      - echo Clean sls stack in the pre_build phase...
   build:
     commands:
       - echo Build started on `date`
