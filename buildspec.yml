@@ -9,42 +9,17 @@ phases:
       - python -V
       - aws --version
       - docker --version
-#      - service docker status
-#      - start docker.service
-#      - service docker status
       - npm i -g serverless
       - sls --version
-#      - virtualenv venv --python=python3
-#      - source venv/bin/activate
       - npm i
       - pip install -r requirements.txt
-#  pre_build:
-#    commands:
-#      - sls deploy -v -s test
-#      - ls -l
-#      - chmod 755 run-test.sh
-#      - ls -l
-#      - ./run-test.sh
-#      - sls remove -v -s test
-#      - echo Clean sls stack in the pre_build phase...
   build:
     commands:
       - echo Build started on `date`
       - python -m unittest
-
-#      - sls deploy -v -s test
-#      - ls -l
-#      - chmod 755 run-test.sh
-#      - ls -l
-#      - ./run-test.sh
-
-#      - cd..
-#      - sls remove -v -s test
-#      - sls deploy -v -s dev
   post_build:
     commands:
       - echo Build completed on `date`
       - echo $CODEBUILD_BUILD_SUCCEEDING
       - pwd
-#      - sls remove -v -s test
       - if [ $CODEBUILD_BUILD_SUCCEEDING = 1 ]; then echo Build completed on `date`; echo Starting deployment; sls deploy -v -s dev; else echo Build failed ignoring deployment; fi
