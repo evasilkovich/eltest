@@ -16,6 +16,7 @@ package:
     - cache/**
     - test/**
     - .pytest_cache/**
+    - eltest_manifest.json
 
 
 provider:
@@ -38,7 +39,7 @@ provider:
 
 functions:
   hello:
-    handler: handler.hello
+    handler: controllers/hello.handler
     events:
       - http:
           path: /hello

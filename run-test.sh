@@ -13,3 +13,4 @@ ls -l
 cd test
 ls -l
 python hello.py
+$?

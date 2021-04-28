@@ -3,6 +3,7 @@ import json
 import os
 import time
 
+
 def put_object():
     s3 = boto3.client('s3')
     bucket_name = os.environ.get('MY_BUCKET')
@@ -13,15 +14,15 @@ def put_object():
         Bucket=bucket_name,
         Key=key_name
     )
-    return 0
+    return
 
 
-def hello(event, context):
+def handler(event, context):
 
     put_object()
     response = {
         "statusCode": 200,
-        "body": "buyworld"
+        "body": "helloworld"
     }
 
     return response
