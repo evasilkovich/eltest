@@ -34,7 +34,7 @@ provider:
         - "*"
 
   environment:
-    MY_BUCKET: eltest
+    MY_BUCKET: eltest-${opt:stage, 'dev'}
 
 
 functions:
@@ -44,3 +44,23 @@ functions:
       - http:
           path: /hello
           method: get
+
+  initQuickSight:
+    handler: functions/initFunc.handler
+
+
+resources:
+  Resources:
+
+    MyBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: ${self:provider.environment.MY_BUCKET}
+
+    PutManifestToS3Resource:
+      Type: Custom::PutManifestToS3Resource
+      DependsOn: MyBucket
+      Properties:
+        ServiceToken:
+          Fn::GetAtt: [InitQuickSightLambdaFunction, Arn]
+        Bucket: ${self:provider.environment.MY_BUCKET}
