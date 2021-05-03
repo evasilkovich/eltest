@@ -9,8 +9,7 @@ export API_GATEWAY_URL=`aws cloudformation describe-stacks \
 
 echo "API Gateway URL 1:" ${API_GATEWAY_URL}
 
-ls -l
+#ls -l
 cd tests
 ls -l
 python test_integration_hello.py
-$?
