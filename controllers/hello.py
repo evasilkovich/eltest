@@ -22,7 +22,7 @@ def handler(event, context):
     put_object()
     response = {
         "statusCode": 200,
-        "body": "buyworld"
+        "body": "helloworld"
     }
 
     return response

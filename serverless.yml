@@ -21,7 +21,7 @@ package:
 
 provider:
   name: aws
-  runtime: python3.8
+  runtime: python3.7
   lambdaHashingVersion: 20201221
   region: eu-central-1
   stage: ${self:custom.yamlStage}
@@ -33,8 +33,17 @@ provider:
       Resource:
         - "*"
 
+    - Effect: Allow
+      Action:
+        - quicksight:*
+      Resource:
+        - "*"
+
   environment:
     MY_BUCKET: eltest-${opt:stage, 'dev'}
+    ELTEST_DATA_SOURCE: eltest-${opt:stage, 'dev'}
+    ACCOUNT_ID: !Sub '${AWS::AccountId}'
+    STAGE: ${opt:stage, 'dev'}
 
 
 functions:
@@ -46,7 +55,10 @@ functions:
           method: get
 
   initQuickSight:
-    handler: functions/initFunc.handler
+    handler: functions/init_func.handler
+
+  refresh:
+    handler: functions/refresh_data_set.handler
 
 
 resources:
@@ -56,6 +68,32 @@ resources:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: ${self:provider.environment.MY_BUCKET}
+        NotificationConfiguration:
+          LambdaConfigurations:
+            -
+              Event: "s3:ObjectCreated:*"
+              Function:
+                "Fn::GetAtt":
+                  - RefreshLambdaFunction
+                  - Arn
+
+    RefreshLambdaPermission:
+      Type: "AWS::Lambda::Permission"
+      Properties:
+        FunctionName:
+          "Fn::GetAtt":
+            - RefreshLambdaFunction
+            - Arn
+        Principal: "s3.amazonaws.com"
+        Action: "lambda:InvokeFunction"
+        SourceAccount:
+          Ref: AWS::AccountId
+        SourceArn:
+          Fn::Join:
+            - ""
+            - - "arn:aws:s3:::"
+              - ${self:provider.environment.MY_BUCKET}
+
 
     PutManifestToS3Resource:
       Type: Custom::PutManifestToS3Resource
@@ -64,3 +102,4 @@ resources:
         ServiceToken:
           Fn::GetAtt: [InitQuickSightLambdaFunction, Arn]
         Bucket: ${self:provider.environment.MY_BUCKET}
+

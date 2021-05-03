@@ -12,5 +12,5 @@ echo "API Gateway URL 1:" ${API_GATEWAY_URL}
 ls -l
 cd test
 ls -l
-python hello.py
+python test_integration_hello.py
 $?
