@@ -16,7 +16,7 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - python -m unittest test/test_hello.py
+      - python -m unittest tests/test_hello.py
   post_build:
     commands:
       - echo Build completed on `date`
